@@ -9,6 +9,7 @@
       "typescript": "3.3.3333"
    },
    "dependencies": {
+      "class-validator": "^0.13.2",
       "express": "^4.17.2",
       "mysql2": "^2.3.3",
       "reflect-metadata": "^0.1.10",

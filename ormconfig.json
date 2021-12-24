@@ -6,18 +6,15 @@
    "password": "docker",
    "database": "multitest",
    "entities": [
-      "src/entity/**/*.ts"
+      "src/repositories/entities/**/*.ts"
    ],
    "migrations": [
-      "src/migration/**/*.ts"
+      "src/repositories/migrations/**/*.ts"
    ],
-   "subscribers": [
-      "src/subscriber/**/*.ts"
-   ],
+  
    "cli": {
-      "entitiesDir": "src/entity",
-      "migrationsDir": "src/migration",
-      "subscribersDir": "src/subscriber"
+      "entitiesDir": "src/repositories/entities",
+      "migrationsDir": "src/repositories/migrations"
    },
    "insecureAuth": true
 }
