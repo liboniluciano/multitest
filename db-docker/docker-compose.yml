@@ -1,0 +1,12 @@
+version: "3.1"
+
+services:
+  db:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: multi
+      MYSQL_DATABASE: multitest
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: docker
+    ports:
+      - "3306:3306"
