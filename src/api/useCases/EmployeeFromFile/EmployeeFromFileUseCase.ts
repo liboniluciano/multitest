@@ -34,11 +34,19 @@ export class EmployeeFromFileUseCase {
     const createRoleUserCase = new CreateRoleUseCase();
 
     const filePath = await getFilesFromPath();
+
+    if (!filePath) {
+      return false;
+    }
+
     const data = await getDataFromPath(filePath);
 
     const repoEmployee = getRepository(Employee);
+    for (var i = 1; i < data.length; i++) {
+      if (data[i].length === 0) {
+        continue;
+      }
 
-    for (var i = 1; i < 10; i++) {
       const employee = data[i].split(";");
       const formattedDate = formatDate(employee[0]);
       const roleAndLevel = employee[1].split(" ");
@@ -48,7 +56,7 @@ export class EmployeeFromFileUseCase {
       });
 
       if (hasEmployees) {
-        break;
+        continue;
       }
 
       const role = await createRoleUserCase.execute(roleAndLevel[0].toString());
