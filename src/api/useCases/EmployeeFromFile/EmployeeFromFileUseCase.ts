@@ -6,10 +6,7 @@ import Level from "../../../repositories/entities/Level";
 import Role from "../../../repositories/entities/Role";
 import Employee from "../../../repositories/entities/Employee";
 import { formatDate } from "../../utils/formatDate";
-
-interface ILevel {
-  name: string;
-}
+import { CreateLevelUseCase } from "../CreateLevel/CreateLevelUseCase";
 
 interface IRole {
   name: string;
@@ -32,13 +29,13 @@ interface IEmployee {
 
 export class EmployeeFromFileUseCase {
   async execute() {
-    let idLevel = 0;
+    const createLevelUserCase = new CreateLevelUseCase();
+
     let idRole = 0;
 
     const filePath = await getFilesFromPath();
     const data = await getDataFromPath(filePath);
 
-    const repoLevel = getRepository(Level);
     const repoRole = getRepository(Role);
     const repoEmployee = getRepository(Employee);
 
@@ -60,16 +57,9 @@ export class EmployeeFromFileUseCase {
           idRole = id;
         }
 
-        const hasLevel = await repoLevel.findOne({
-          where: { name: roleAndLevel[1] },
-        });
-        if (!hasLevel) {
-          const obj: ILevel = {
-            name: roleAndLevel[1].toString(),
-          };
-          const { id } = await repoLevel.save(obj);
-          idLevel = id;
-        }
+        const level = await createLevelUserCase.execute(
+          roleAndLevel[1].toString()
+        );
 
         const employeeSave: IEmployee = {
           registration_date: new Date(formattedDate),
@@ -79,7 +69,7 @@ export class EmployeeFromFileUseCase {
           salary: Number(employee[5]),
           status: employee[6] === "ATIVO" ? true : false,
           level: {
-            id: hasLevel?.id || idLevel,
+            id: level,
           },
           role: {
             id: hasRole?.id || idRole,
