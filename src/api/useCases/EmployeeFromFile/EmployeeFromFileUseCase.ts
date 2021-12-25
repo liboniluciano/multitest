@@ -22,8 +22,12 @@ interface IEmployee {
   uf_born: string;
   salary: number;
   status: boolean;
-  id_level: number;
-  id_role: number;
+  level: {
+    id: number;
+  };
+  role: {
+    id: number;
+  };
 }
 
 export class EmployeeFromFileUseCase {
@@ -74,11 +78,13 @@ export class EmployeeFromFileUseCase {
           uf_born: employee[4],
           salary: Number(employee[5]),
           status: employee[6] === "ATIVO" ? true : false,
-          id_level: hasLevel.id || idLevel,
-          id_role: hasRole.id || idRole,
+          level: {
+            id: hasLevel?.id || idLevel,
+          },
+          role: {
+            id: hasRole?.id || idRole,
+          },
         };
-
-        console.log(employeeSave);
 
         await repoEmployee.save(employeeSave);
       }

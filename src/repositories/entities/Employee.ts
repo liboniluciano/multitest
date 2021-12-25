@@ -18,11 +18,17 @@ export default class Employee {
   @Column()
   registration_date: Date;
 
-  @ManyToOne((type) => Level, (employee) => Employee, { eager: true })
+  @ManyToOne((type) => Level, (employee) => Employee, {
+    eager: true,
+    cascade: true,
+  })
   @JoinColumn({ name: "id_level" })
   level: Level;
 
-  @ManyToOne((type) => Role, (employee) => Employee, { eager: true })
+  @ManyToOne((type) => Role, (employee) => Employee, {
+    eager: true,
+    cascade: true,
+  })
   @JoinColumn({ name: "id_role" })
   role: Role;
 
