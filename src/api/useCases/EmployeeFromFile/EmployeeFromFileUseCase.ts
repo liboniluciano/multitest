@@ -8,6 +8,7 @@ import Employee from "../../../repositories/entities/Employee";
 import { formatDate } from "../../utils/formatDate";
 import { CreateLevelUseCase } from "../CreateLevel/CreateLevelUseCase";
 import { CreateRoleUseCase } from "../CreateRole/CreateRoleUseCase";
+import { removeFilesFromFolder } from "../../utils/removeFilesFromFolder";
 
 interface IRole {
   name: string;
@@ -81,6 +82,8 @@ export class EmployeeFromFileUseCase {
       };
 
       await repoEmployee.save(employeeSave);
+
+      await removeFilesFromFolder();
     }
   }
   catch(error) {

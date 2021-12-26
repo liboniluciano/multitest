@@ -1,10 +1,16 @@
 import multer from "multer";
 import crypto from "crypto";
 import { extname, resolve } from "path";
+import fs from "fs";
+
+const mainFolder = resolve(__dirname, "..", "tmp", "uploads");
 
 const storage = multer.diskStorage({
-  destination: resolve(__dirname, "..", "tmp", "uploads"),
+  destination: `${mainFolder}`,
   filename: (req, file, cb) => {
+    if (!fs.existsSync(mainFolder)) {
+      fs.mkdirSync(mainFolder);
+    }
     crypto.randomBytes(16, (err, res) => {
       if (err) return cb(null, err.message);
 

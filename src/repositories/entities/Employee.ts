@@ -50,7 +50,7 @@ export default class Employee {
   })
   uf_born: string;
 
-  @Column("decimal", { precision: 6, scale: 2 })
+  @Column("decimal", { precision: 8, scale: 2 })
   salary: number;
 
   @Column("bit")
