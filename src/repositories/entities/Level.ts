@@ -16,8 +16,8 @@ export default class Level {
 
   @Column()
   @MinLength(2, { message: "Level must be at least 2 characters" })
-  name: string;
+  name?: string;
 
   @OneToMany((type) => Employee, (level) => Level)
-  employee: Employee;
+  employee?: Employee;
 }

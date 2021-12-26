@@ -9,8 +9,8 @@ export default class Role {
 
   @Column()
   @MinLength(2, { message: "Role must be at least 2 characters" })
-  name: string;
+  name?: string;
 
   @OneToMany((type) => Employee, (role) => Role)
-  role: Role;
+  role?: Role;
 }
