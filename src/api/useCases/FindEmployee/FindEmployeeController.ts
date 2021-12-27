@@ -9,8 +9,9 @@ export class FindEmployeeController {
       const employee = await this.findEmployeeUseCase.execute(req.query);
       return res.send(employee);
     } catch (error) {
-      console.log(error);
-      res.status(500).json({ error: "Deu ruim" });
+      res
+        .status(500)
+        .json({ error: "There was an error searching for employees" });
     }
   }
 }

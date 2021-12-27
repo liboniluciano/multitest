@@ -32,8 +32,9 @@ export class UserSessionController {
       const userToken = await this.userSessionUserCase.execute(req.body);
       return res.send(userToken);
     } catch (error) {
-      console.log(error);
-      return res.status(500).json({ error: "deu ruim" });
+      return res
+        .status(500)
+        .json({ error: "There was an error authenticating" });
     }
   }
 }

@@ -6,7 +6,5 @@ const folderUpload = resolve(__dirname, "..", "tmp", "uploads");
 export const removeFilesFromFolder = async () => {
   try {
     rimraf(`${folderUpload}`, () => {});
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 };

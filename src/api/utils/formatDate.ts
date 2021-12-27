@@ -12,7 +12,5 @@ export const formatDate = (date: string) => {
       "yyyy/MM/dd"
     );
     return formattedDate;
-  } catch (err) {
-    console.log(err);
-  }
+  } catch (err) {}
 };

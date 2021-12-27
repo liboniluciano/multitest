@@ -23,7 +23,6 @@ export class CreateEmployeeController {
 
       return res.status(201).json(employee);
     } catch (error) {
-      console.log(error);
       return res
         .status(500)
         .json({ error: "There was an error saving employee." });

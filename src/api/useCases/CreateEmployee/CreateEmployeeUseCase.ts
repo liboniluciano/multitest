@@ -8,7 +8,6 @@ export class CreateEmployeeUseCase {
   async execute(
     employee: IRequestCreateEmployeeDTO
   ): Promise<ICreateEmployeeDTO> {
-    console.log(employee);
     const employeeRepo = getRepository(Employee);
 
     const {

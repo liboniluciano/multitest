@@ -13,7 +13,6 @@ export class FindAllEmployeeController {
 
       return res.send(employees);
     } catch (error) {
-      console.log(error);
       return res
         .status(500)
         .json({ error: "There was an error fetching the employees." });

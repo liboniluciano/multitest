@@ -15,7 +15,6 @@ export class UploadFileController {
 
       return res.status(200).json({ message: "The upload was successful!" });
     } catch (err) {
-      console.log(err);
       return res.status(500).json({
         error:
           "Could not upload the file. Only txt type documents are accepted",
