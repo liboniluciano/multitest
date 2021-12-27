@@ -29,8 +29,8 @@
 
 - Para conseguir o fluxo de rotas, é necessário criar um usuário e autenticar
 
-  - POST: {base_url}/user -> Criação
-  - POST: {base_url}/session -> Informar mail e password
+- POST: {base_url}/user -> {name: string; mail: string; password: string}
+- POST: {base_url}/session -> {mail: string; password: string{
 
 - Emplooye -> Ao popular a base, 2 tabelas são criadas caso não existam registros: role e level
   [Txt de carga](https://drive.google.com/file/d/1i2KLUdn0izJYrpJ2WrGb3mv5bc9W7jc5/view?usp=sharing)
