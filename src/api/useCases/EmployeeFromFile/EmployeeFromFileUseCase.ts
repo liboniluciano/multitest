@@ -9,6 +9,7 @@ import { formatDate } from "../../utils/formatDate";
 import { CreateLevelUseCase } from "../CreateLevel/CreateLevelUseCase";
 import { CreateRoleUseCase } from "../CreateRole/CreateRoleUseCase";
 import { removeFilesFromFolder } from "../../utils/removeFilesFromFolder";
+import { validateHeaderFile } from "../../utils/validateHeaderFile";
 
 interface IRole {
   name: string;
@@ -37,10 +38,15 @@ export class EmployeeFromFileUseCase {
     const filePath = await getFilesFromPath();
 
     if (!filePath) {
-      return false;
+      throw new Error("File was not found");
     }
 
     const data = await getDataFromPath(filePath);
+    const isValidHeader = validateHeaderFile(data);
+
+    if (!isValidHeader) {
+      throw new Error("The header is not valid");
+    }
 
     const repoEmployee = getRepository(Employee);
     for (var i = 1; i < data.length; i++) {
