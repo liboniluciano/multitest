@@ -8,6 +8,7 @@ import { deleteEmployeeController } from "./api/useCases/DeleteEmployee";
 import { updateEmployeeController } from "./api/useCases/UpdateEmployee";
 import { findAllEmployeeController } from "./api/useCases/FindAllEmployee";
 import { findEmployeeController } from "./api/useCases/FindEmployee";
+import { createUserController } from "./api/useCases/CreateUser";
 
 const routes = Router();
 const upload = multer(multerConfig);
@@ -38,6 +39,10 @@ routes.delete("/employee/:cpf", (req, res) => {
 
 routes.post("/employeeFile", (req, res) => {
   return employeeFromFileController.handle(req, res);
+});
+
+routes.post("/user", (req, res) => {
+  return createUserController.handle(req, res);
 });
 
 routes.get("/ping", (req, res) => {
