@@ -9,6 +9,7 @@ import { updateEmployeeController } from "./api/useCases/UpdateEmployee";
 import { findAllEmployeeController } from "./api/useCases/FindAllEmployee";
 import { findEmployeeController } from "./api/useCases/FindEmployee";
 import { createUserController } from "./api/useCases/CreateUser";
+import { userSessionController } from "./api/useCases/UserSession";
 
 const routes = Router();
 const upload = multer(multerConfig);
@@ -43,6 +44,10 @@ routes.post("/employeeFile", (req, res) => {
 
 routes.post("/user", (req, res) => {
   return createUserController.handle(req, res);
+});
+
+routes.post("/session", (req, res) => {
+  return userSessionController.handle(req, res);
 });
 
 routes.get("/ping", (req, res) => {
