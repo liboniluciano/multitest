@@ -10,10 +10,16 @@ import { findAllEmployeeController } from "./api/useCases/FindAllEmployee";
 import { findEmployeeController } from "./api/useCases/FindEmployee";
 import { createUserController } from "./api/useCases/CreateUser";
 import { userSessionController } from "./api/useCases/UserSession";
+import authMiddleware from "./api/middlewares/auth";
 
 const routes = Router();
 const upload = multer(multerConfig);
 
+routes.get("/ping", (req, res) => {
+  return res.json({ message: "Hello Multi!" });
+});
+
+routes.use(authMiddleware);
 routes.post("/upload", upload.single("file"), (req, res) => {
   return uploadFileController.handle(req, res);
 });
@@ -48,10 +54,6 @@ routes.post("/user", (req, res) => {
 
 routes.post("/session", (req, res) => {
   return userSessionController.handle(req, res);
-});
-
-routes.get("/ping", (req, res) => {
-  return res.json({ message: "Hello Multi!" });
 });
 
 export default routes;
