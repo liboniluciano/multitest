@@ -19,6 +19,14 @@ routes.get("/ping", (req, res) => {
   return res.json({ message: "Hello Multi!" });
 });
 
+routes.post("/user", (req, res) => {
+  return createUserController.handle(req, res);
+});
+
+routes.post("/session", (req, res) => {
+  return userSessionController.handle(req, res);
+});
+
 routes.use(authMiddleware);
 routes.post("/upload", upload.single("file"), (req, res) => {
   return uploadFileController.handle(req, res);
@@ -46,14 +54,6 @@ routes.delete("/employee/:cpf", (req, res) => {
 
 routes.post("/employeeFile", (req, res) => {
   return employeeFromFileController.handle(req, res);
-});
-
-routes.post("/user", (req, res) => {
-  return createUserController.handle(req, res);
-});
-
-routes.post("/session", (req, res) => {
-  return userSessionController.handle(req, res);
 });
 
 export default routes;
