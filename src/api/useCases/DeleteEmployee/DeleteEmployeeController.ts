@@ -9,16 +9,22 @@ export class DeleteEmployeeController {
   ) {}
 
   async handle(req: Request, res: Response): Promise<Response> {
-    const { cpf } = req.params;
+    try {
+      const { cpf } = req.params;
 
-    const hasEmployee = await this.findOneEmployeeUseCase.execute(Number(cpf));
+      const hasEmployee = await this.findOneEmployeeUseCase.execute(
+        Number(cpf)
+      );
 
-    if (!hasEmployee) {
-      return res.status(404).json({ error: "This employee was not found!" });
+      if (!hasEmployee) {
+        return res.status(404).json({ error: "This employee was not found!" });
+      }
+
+      await this.deleteEmployeeUseCase.execute(hasEmployee);
+
+      return res.send();
+    } catch (error) {
+      return res.status(500).json({ error: "There was an error delete user." });
     }
-
-    await this.deleteEmployeeUseCase.execute(hasEmployee);
-
-    return res.send();
   }
 }
