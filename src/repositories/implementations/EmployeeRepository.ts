@@ -1,7 +1,7 @@
 import { EntityRepository, Repository } from "typeorm";
-import { IFindAllEmployeeDTO } from "../../../api/useCases/FindAllEmployee/FindAllEmployeeDTO";
-import { IEmployeeRepository } from "../../IEmployeeRepository";
-import Employee from "../Employee";
+import { IFindAllEmployeeDTO } from "../../api/useCases/FindAllEmployee/FindAllEmployeeDTO";
+import { IEmployeeRepository } from "../IEmployeeRepository";
+import Employee from "../entities/Employee";
 
 @EntityRepository(Employee)
 export class EmployeeRepository

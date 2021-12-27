@@ -1,5 +1,5 @@
 import { getCustomRepository } from "typeorm";
-import { EmployeeRepository } from "../../../repositories/entities/implementations/EmployeeRepository";
+import { EmployeeRepository } from "../../../repositories/implementations/EmployeeRepository";
 
 export class FindAllEmployeeUseCase {
   async execute(page: number, quantity: number) {

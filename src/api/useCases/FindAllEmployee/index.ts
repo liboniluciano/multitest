@@ -1,4 +1,4 @@
-import { EmployeeRepository } from "../../../repositories/entities/implementations/EmployeeRepository";
+import { EmployeeRepository } from "../../../repositories/implementations/EmployeeRepository";
 import { CreateLevelUseCase } from "../CreateLevel/CreateLevelUseCase";
 import { FindAllEmployeeController } from "./FindAllEmployeeController";
 import { FindAllEmployeeUseCase } from "./FindAllEmployeeUseCase";
