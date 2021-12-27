@@ -6,7 +6,6 @@ export class FindAllEmployeeController {
 
   async handle(req: Request, res: Response): Promise<Response> {
     try {
-      console.log(req.query);
       const employees = await this.findAllEmployeeUseCase.execute(
         Number(req.query.page),
         Number(req.query.quantity)

@@ -7,6 +7,7 @@ import { uploadFileController } from "./api/useCases/UploadFile";
 import { deleteEmployeeController } from "./api/useCases/DeleteEmployee";
 import { updateEmployeeController } from "./api/useCases/UpdateEmployee";
 import { findAllEmployeeController } from "./api/useCases/FindAllEmployee";
+import { findEmployeeController } from "./api/useCases/FindEmployee";
 
 const routes = Router();
 const upload = multer(multerConfig);
@@ -19,8 +20,12 @@ routes.post("/employee", (req, res) => {
   return createEmployeeController.handle(req, res);
 });
 
-routes.get("/employee", (req, res) => {
+routes.get("/employee/all", (req, res) => {
   return findAllEmployeeController.handle(req, res);
+});
+
+routes.get("/employee", (req, res) => {
+  return findEmployeeController.handle(req, res);
 });
 
 routes.put("/employee", (req, res) => {

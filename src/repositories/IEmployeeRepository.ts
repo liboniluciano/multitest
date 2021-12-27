@@ -3,4 +3,5 @@ import Employee from "./entities/Employee";
 
 export interface IEmployeeRepository {
   findAll(page: number, quantity: number): Promise<IFindAllEmployeeDTO>;
+  findWithParameters(query: any): Promise<Employee[]>;
 }
