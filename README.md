@@ -22,8 +22,9 @@
 
     $ cd db-docker/
     $ docker-compose up
-    $ yarn start
     $ yarn typeorm migration:run
+    $ yarn start
+    
 
 ## EndPoints
 
