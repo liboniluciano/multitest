@@ -19,10 +19,39 @@
     $ yarn
 
 ## Running the project
-
-    $ yarn start
     $ cd db-docker/
-    $ docker compose up -D
+    $ docker-compose up 
+    $ yarn start
     $ yarn typeorm migration:run
 
 ## EndPoints
+- Para conseguir o fluxo de rotas, é necessário criar um usuário e autenticar
+  * POST: {base_url}/user -> Criação
+  * POST: {base_url}/session -> Informar mail e password
+
+- Emplooye -> Ao popular a base, 2 tabelas são criadas caso não existam registros: role e level
+ * GET: {base_url}/ping -> Health Check
+ * POST: {base_url}/upload -> Rota que recebe o .txt para popular o banco
+ * POST: {base_url}/employee -> {
+    registration_date: Date;
+    cpf: number;
+    name: string;
+    uf_born: string;
+    salary: number;
+    status: ATIVO ou INATIVO;
+    level: number;
+    role: number;
+  } 
+  * GET: {base_url}/employee/all? -> page: number; quantity: number
+  * GET: {base_url}/employee? -> cpf: number, role: number, name: number, salary: status, string
+  * PUT: {base_url}/employee -> {
+    registration_date?: Date;
+    **cpf: number;
+    name?: string;
+    uf_born?: string;
+    salary?: number;
+    status?: ATIVO ou INATIVO;
+    level?: number;
+    role?: number;
+  }
+  * DELETE: base_url}/employee/:cpf
